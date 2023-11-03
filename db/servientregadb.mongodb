@@ -1,0 +1,175 @@
+use("servientrega");
+
+db.envio.insertMany([
+  {
+    id: 1,
+    id_usuario_envia: 1,
+    estado_envio: "Enviado",
+    fecha_recogida: "2023-08-01",
+    fecha_entrega: "2023-08-02",
+    sucursal: 1,
+    id_usuario_envia: 1,
+    id_usuario_recibe: 2,
+    costo_envio: 10000,
+    paquete_id: 1,
+  },
+  {
+    id: 2,
+    id_usuario_envia: 2,
+    estado_envio: "En tránsito",
+    fecha_recogida: "2023-09-01",
+    fecha_entrega: "2023-09-02",
+    sucursal: 2,
+    id_usuario_envia: 2,
+    id_usuario_recibe: 3,
+    costo_envio: 20000,
+    paquete_id: 2,
+  },
+  {
+    id: 3,
+    id_usuario_envia: 2,
+    estado_envio: "Entregado",
+    fecha_recogida: "2023-09-01",
+    fecha_entrega: "2023-09-02",
+    sucursal: 2,
+    id_usuario_envia: 1,
+    id_usuario_recibe: 3,
+    costo_envio: 20000,
+    paquete_id: 2,
+  },
+]);
+
+db.paquete.insertMany([
+  {
+    id_paquete: 1,
+    peso: 10,
+    volumen: 20,
+    pais_origen: "Colombia",
+    pais_destino: "Estados Unidos",
+    sucursal_id: 2,
+  },
+  {
+    id_paquete: 2,
+    peso: 20,
+    volumen: 40,
+    pais_origen: "Colombia",
+    pais_destino: "España",
+    sucursal_id: 2,
+  },
+  {
+    id_paquete: 3,
+    peso: 200,
+    volumen: 400,
+    pais_origen: "Colombia",
+    pais_destino: "España",
+    sucursal_id: 1,
+  },
+]);
+
+db.sucursal.insertMany([
+  {
+    id: 1,
+    direccion: "Calle 1 # 1-100",
+    ciudad: "Barranquilla",
+    nombre: "Sucursal 1",
+  },
+  {
+    id: 2,
+    direccion: "Calle 2 # 2-200",
+    ciudad: "cali",
+    nombre: "Sucursal 2",
+  },
+]);
+
+db.rol.insertMany([
+  {
+    Id_rol: 1,
+    nombre_rol: "Super_administrador",
+    acceso_rol: {
+      usuario: ["GET", "POST", "PUT", "DELETE"],
+      producto: ["GET", "POST", "PUT", "DELETE"],
+      orden: ["GET", "POST", "PUT", "DELETE"],
+      restaurante: ["GET", "POST", "PUT", "DELETE"],
+      pedido: ["GET", "POST", "PUT", "DELETE"],
+      rol: ["GET", "POST", "PUT", "DELETE"],
+    },
+  },
+  {
+    Id_rol: 2,
+    nombre_rol: "administrador",
+    acceso_rol: {
+      usuario: ["GET", "POST", "PUT", "DELETE"],
+      producto: ["GET", "POST", "PUT", "DELETE"],
+      orden: ["GET", "POST", "PUT", "DELETE"],
+      restaurante: ["GET", "POST", "PUT", "DELETE"],
+      pedido: ["GET", "POST", "PUT", "DELETE"],
+    },
+  },
+  {
+    Id_rol: 3,
+    nombre_rol: "cliente",
+    acceso_rol: {
+      restaurante: ["GET"],
+      producto: ["GET"],
+      pedido: ["GET", "POST", "PUT", "DELETE"],
+    },
+  },
+  {
+    Id_rol: 4,
+    nombre_rol: "repartidor",
+    acceso_rol: {
+      orden: ["GET"],
+    },
+  },
+]);
+
+db.usuario.insertMany([
+  {
+    id_usuario: 1,
+    nombre: "Diego Martinez",
+    correo: "diegofernadndomartinezcalderon@gmail.com",
+    contraseña: "$2a$10$BUVwI1l18Nn4Pf1gteK8VeKZPmyhqe7qbjS8k1woQ2gm97XIfzeV6",
+    rol: "Super_administrador",
+    telefono: "3151456321",
+    direccion: "cra14afk#15",
+    ciudad: "Medellín",
+    pais: "Colombia",
+    descripcion_vivienda: "Casa 202",
+  },
+  {
+    id_usuario: 2,
+    nombre: "Joel Bueno",
+    correo: "adrianj@gmail.com",
+    contraseña: "$2a$10$15hhuyjLbZTwDWmiUdHagOcgKVVUHU8k8MEAq7C1rFX/Fz2NwSSde",
+    rol: "administrador",
+    telefono: "3504265412",
+    direccion: "cra14aw#45b17",
+    ciudad: "Bogota",
+    pais: "Colombia",
+    descripcion_vivienda: "Oficina 1001",
+  },
+  {
+    id_usuario: 5,
+    nombre: "Andrey Hernando",
+    correo: "Andrey@hotmail.com",
+    contraseña: "$2a$10$oqos9VuIs0tF6lWoaCkD.eYvt/AFL69/EyaTkl1SQKoskwN4TONKq",
+    rol: "cliente",
+    telefono: "3151456321",
+    direccion: "cra14afk#15",
+    ciudad: "Cali",
+    pais: "Colombia",
+    descripcion_vivienda: "Apartamento 301",
+  },
+  {
+    id_usuario: 6,
+    nombre: "Adriano Pedraza",
+    correo: "Adriano123@hotmail.com",
+    contraseña: "$2a$10$B0NIGHyyCSpEgP7JNKUOlud2Sah6bMNyKH.aTRxMVyuYZglEuiSXW",
+    rol: "repartidor",
+    telefono: "3254896541",
+    direccion: "calle45",
+    ciudad: "Tolima",
+    pais: "Colombia",
+    descripcion_vivienda: "Casa 1",
+  },
+]);
